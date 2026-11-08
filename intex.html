@@ -12,21 +12,20 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: { 50: '#fffbeb', 500: '#f59e0b', 600: '#d97706', 700: '#b45309', 950: '#451a03' },
-                        foodred: { 600: '#dc2626', 700: '#b91c1c' }
+                        brand: { 50: '#fffbeb', 500: '#f59e0b', 600: '#d97706', 700: '#b45309', 950: '#451a03' }
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-zinc-900 text-zinc-100 font-sans antialiased selection:bg-amber-500 selection:text-zinc-950">
+<body class="bg-zinc-950 text-zinc-100 font-sans antialiased selection:bg-amber-500 selection:text-zinc-950">
 
     <!-- Header / Navbar -->
-    <header class="fixed top-0 left-0 right-0 z-40 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800">
+    <header class="fixed top-0 left-0 right-0 z-40 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-red-600 to-amber-500 flex items-center justify-center font-black text-xl text-white shadow-lg shadow-red-600/30">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center font-black text-xl text-zinc-950 shadow-lg shadow-amber-500/20">
                     FS
                 </div>
                 <div>
@@ -40,36 +39,36 @@
                 <button onclick="toggleCart()" class="relative bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-white px-4 py-2.5 rounded-xl flex items-center gap-2 transition shadow-md">
                     <i class="fas fa-shopping-bag text-amber-500 text-lg"></i>
                     <span class="hidden sm:inline text-sm font-medium">Mi Pedido</span>
-                    <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center shadow">0</span>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-amber-500 text-zinc-950 text-xs font-black w-6 h-6 rounded-full flex items-center justify-center shadow">0</span>
                 </button>
                 <!-- Botón Admin -->
-                <button onclick="toggleAdminModal()" class="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white px-3 py-2.5 rounded-xl text-sm transition flex items-center gap-1.5 border border-zinc-700">
-                    <i class="fas fa-lock text-xs text-amber-400"></i> Admin
+                <button onclick="toggleAdminModal()" class="bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white px-3 py-2.5 rounded-xl text-sm transition flex items-center gap-1.5 border border-zinc-800">
+                    <i class="fas fa-lock text-xs text-amber-500"></i> Admin
                 </button>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden border-b border-zinc-800 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-900">
+    <section class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden border-b border-zinc-900 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <span class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-4">
+            <span class="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-6 shadow-inner">
                 <i class="fas fa-fire text-amber-400"></i> Sabor Tradicional y Casero
             </span>
-            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white max-w-3xl mx-auto mb-4">
-                Disfruta el verdadero sazón en cada <span class="text-amber-500">platillo y postre</span>
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white max-w-3xl mx-auto mb-6 leading-tight">
+                Disfruta el verdadero sazón en cada <span class="bg-gradient-to-r from-amber-400 to-amber-200 bg-clip-text text-transparent">platillo y postre</span>
             </h1>
-            <p class="text-base sm:text-lg text-zinc-400 max-w-xl mx-auto mb-8">
+            <p class="text-base sm:text-lg text-zinc-400 max-w-xl mx-auto mb-10">
                 Elige tus favoritos, arma tu pedido y pídelo directo a nuestro WhatsApp de manera rápida y sencilla.
             </p>
             
             <!-- Categorías de Filtro -->
             <div id="category-filters" class="flex flex-wrap justify-center gap-2 sm:gap-3">
                 <button onclick="filterCategory('todos')" class="cat-btn active px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-amber-500 text-zinc-950 shadow-lg shadow-amber-500/20">Todos</button>
-                <button onclick="filterCategory('Desayunos')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-zinc-800 text-zinc-300 hover:bg-zinc-700">Desayunos</button>
-                <button onclick="filterCategory('Comidas')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-zinc-800 text-zinc-300 hover:bg-zinc-700">Comidas</button>
-                <button onclick="filterCategory('Postres')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-zinc-800 text-zinc-300 hover:bg-zinc-700">Postres</button>
-                <button onclick="filterCategory('Bebidas')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-zinc-800 text-zinc-300 hover:bg-zinc-700">Bebidas</button>
+                <button onclick="filterCategory('Desayunos')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-zinc-900 text-zinc-300 hover:bg-zinc-800 border border-zinc-800">Desayunos</button>
+                <button onclick="filterCategory('Comidas')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-zinc-900 text-zinc-300 hover:bg-zinc-800 border border-zinc-800">Comidas</button>
+                <button onclick="filterCategory('Postres')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-zinc-900 text-zinc-300 hover:bg-zinc-800 border border-zinc-800">Postres</button>
+                <button onclick="filterCategory('Bebidas')" class="cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-zinc-900 text-zinc-300 hover:bg-zinc-800 border border-zinc-800">Bebidas</button>
             </div>
         </div>
     </section>
@@ -84,13 +83,13 @@
         </div>
 
         <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Los productos se inyectan dinámicamente con JavaScript -->
+            <!-- Inyectado por JavaScript -->
         </div>
     </main>
 
     <!-- Carrito Lateral (Drawer) -->
     <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
-        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
         <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
             <div class="w-screen max-w-md bg-zinc-950 border-l border-zinc-800 flex flex-col shadow-2xl">
                 <div class="p-6 border-b border-zinc-800 flex items-center justify-between">
@@ -111,7 +110,7 @@
                         <span class="text-zinc-400 font-medium">Total Estimado:</span>
                         <span id="cart-total" class="text-2xl font-black text-amber-400">$0.00 MXN</span>
                     </div>
-                    <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2 text-base">
+                    <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2 text-base">
                         <i class="fab fa-whatsapp text-2xl"></i> Enviar Pedido por WhatsApp
                     </button>
                 </div>
@@ -166,13 +165,13 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-medium text-zinc-400 mb-1">URL de la Imagen</label>
-                                <input type="url" id="p-image" required class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-2.5 text-white text-sm focus:border-amber-500 focus:outline-none" placeholder="Pega el link de la foto (o usa una de muestra)">
+                                <input type="url" id="p-image" required class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-2.5 text-white text-sm focus:border-amber-500 focus:outline-none" placeholder="Pega el link de la foto">
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-xs font-medium text-zinc-400 mb-1">Descripción corta</label>
-                            <textarea id="p-desc" rows="2" required class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-2.5 text-white text-sm focus:border-amber-500 focus:outline-none" placeholder="Ingredientes o detalles del platillo..."></textarea>
+                            <textarea id="p-desc" rows="2" required class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-2.5 text-white text-sm focus:border-amber-500 focus:outline-none" placeholder="Ingredientes o detalles..."></textarea>
                         </div>
 
                         <div class="flex justify-end gap-3 pt-2">
@@ -181,7 +180,7 @@
                         </div>
                     </form>
 
-                    <!-- Lista de Platillos Existentes en Admin -->
+                    <!-- Lista de Platillos en Admin -->
                     <h4 class="text-sm font-bold text-zinc-300 mb-3">Platillos Registrados</h4>
                     <div id="admin-product-list" class="space-y-3 max-h-60 overflow-y-auto pr-2">
                         <!-- Se llena con JS -->
@@ -196,16 +195,15 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <p class="mb-2 font-bold text-zinc-300">Finde Sabroso • Lagos de Moreno, Jal.</p>
             <p class="mb-4">Desarrollado por <strong>WebLagos</strong> 🚀</p>
-            <a href="https://wa.me/524742075715?text=Hola,%20quiero%20más%20información%20de%20WebLagos" target="_blank" class="text-amber-500 hover:underline text-xs">¿Quieres una página web para tu negocio? Contáctanos aquí</a>
+            <a href="https://wa.me/524742075715?text=Hola,%20quiero%20información%20sobre%20WebLagos" target="_blank" class="text-amber-500 hover:underline text-xs">¿Quieres una página web para tu negocio? Contáctanos aquí</a>
         </div>
     </footer>
 
     <!-- JavaScript del Sistema -->
     <script>
-        // Teléfono oficial para pedidos
-        const PHONE_NUMBER = "524742075715";
+        // Teléfono oficial actualizado para pedidos de Finde Sabroso
+        const PHONE_NUMBER = "524742082742";
 
-        // Productos iniciales basados en las fotos reales de Finde Sabroso
         const defaultProducts = [
             {
                 id: 1,
@@ -241,30 +239,26 @@
             }
         ];
 
-        // Cargar productos desde LocalStorage o usar los por defecto
         let products = JSON.parse(localStorage.getItem('finde_sabroso_products')) || defaultProducts;
         let cart = [];
         let currentFilter = 'todos';
 
-        // Renderizar productos al cargar la página
         document.addEventListener('DOMContentLoaded', () => {
             renderProducts();
             renderAdminList();
         });
 
-        // Filtrar productos
         function filterCategory(category) {
             currentFilter = category;
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 btn.classList.remove('bg-amber-500', 'text-zinc-950', 'shadow-lg');
-                btn.classList.add('bg-zinc-800', 'text-zinc-300');
+                btn.classList.add('bg-zinc-900', 'text-zinc-300', 'border', 'border-zinc-800');
             });
-            event.target.classList.remove('bg-zinc-800', 'text-zinc-300');
+            event.target.classList.remove('bg-zinc-900', 'text-zinc-300', 'border', 'border-zinc-800');
             event.target.classList.add('bg-amber-500', 'text-zinc-950', 'shadow-lg');
             renderProducts();
         }
 
-        // Mostrar productos en la tienda
         function renderProducts() {
             const grid = document.getElementById('product-grid');
             const filtered = currentFilter === 'todos' ? products : products.filter(p => p.category === currentFilter);
@@ -300,7 +294,6 @@
             `).join('');
         }
 
-        // Carrito de compras
         function addToCart(id) {
             const product = products.find(p => p.id === id);
             const existing = cart.find(item => item.id === id);
@@ -310,7 +303,7 @@
                 cart.push({ ...product, qty: 1 });
             }
             updateCartUI();
-            toggleCart(); // Abre el carrito automáticamente al agregar
+            toggleCart();
         }
 
         function updateCartUI() {
@@ -360,8 +353,7 @@
         }
 
         function toggleCart() {
-            const drawer = document.getElementById('cart-drawer');
-            drawer.classList.toggle('hidden');
+            document.getElementById('cart-drawer').classList.toggle('hidden');
         }
 
         function checkoutWhatsApp() {
@@ -380,10 +372,8 @@
             window.open(`https://wa.me/${PHONE_NUMBER}?text=${encoded}`, '_blank');
         }
 
-        // Panel de Administración (Admin Modal)
         function toggleAdminModal() {
-            const modal = document.getElementById('admin-modal');
-            modal.classList.toggle('hidden');
+            document.getElementById('admin-modal').classList.toggle('hidden');
         }
 
         function saveProduct(e) {
@@ -396,7 +386,6 @@
             const description = document.getElementById('p-desc').value;
 
             if (id) {
-                // Editar existente
                 const p = products.find(item => item.id == id);
                 p.name = name;
                 p.category = category;
@@ -404,16 +393,7 @@
                 p.image = image;
                 p.description = description;
             } else {
-                // Crear nuevo
-                const newProduct = {
-                    id: Date.now(),
-                    name,
-                    category,
-                    price,
-                    image,
-                    description
-                };
-                products.push(newProduct);
+                products.push({ id: Date.now(), name, category, price, image, description });
             }
 
             localStorage.setItem('finde_sabroso_products', JSON.stringify(products));
